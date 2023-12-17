@@ -20,18 +20,22 @@ mongoose
 
 // Define User schema
 const userSchema = new mongoose.Schema({
-  username: String,
+  email: String,
   password: String,
+  confirmPassword: String,
+  name: String,
+  age: String,
+  sex: String,
 });
 
 const User = mongoose.model("User", userSchema);
 
 // Routes
 app.post("/register", (req, res) => {
-  const { username, password } = req.body;
+  const { email, password } = req.body;
 
   // Check if user already exists
-  User.findOne({ username }, (err, existingUser) => {
+  User.findOne({ email }, (err, existingUser) => {
     if (err) {
       return res.status(500).json({ error: "Internal Server Error" });
     }
@@ -41,7 +45,7 @@ app.post("/register", (req, res) => {
     }
 
     // Create a new user
-    const newUser = new User({ username, password });
+    const newUser = new User({ email, password });
     newUser.save((err) => {
       if (err) {
         return res.status(500).json({ error: "Internal Server Error" });
@@ -53,10 +57,10 @@ app.post("/register", (req, res) => {
 });
 
 app.post("/login", (req, res) => {
-  const { username, password } = req.body;
+  const { email, password } = req.body;
 
   // Find the user
-  User.findOne({ username }, (err, user) => {
+  User.findOne({ email }, (err, user) => {
     if (err) {
       return res.status(500).json({ error: "Internal Server Error" });
     }
@@ -71,7 +75,7 @@ app.post("/login", (req, res) => {
     }
 
     // Generate JWT token
-    const token = jwt.sign({ username }, "secretkey");
+    const token = jwt.sign({ email }, "secretkey");
 
     res.status(200).json({ token });
   });

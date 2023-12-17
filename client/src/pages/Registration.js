@@ -25,7 +25,7 @@ const Registration = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const isValid = validateForm();
 
@@ -34,6 +34,26 @@ const Registration = () => {
       // For now, just displaying a payment message
       setPaymentMessage("Payment done! See you in the class");
     }
+
+    //send data to register
+    // try{
+    // const response = await axios.post("http://localhost:5000/register", registerData);
+    //  const {sucess, message} = Response.data;
+    // if(success) {
+    // console.log('registerd successfully');
+    // }
+    // }
+    // catch(error){
+    // console.log('error', error);
+    // }
+    // setFormData({
+    //  email: "",
+    // password: "",
+    // confirmPassword: "",
+    // name: "",
+    // age: "",
+    // sex: "",
+    // })
   };
 
   const validateForm = () => {
