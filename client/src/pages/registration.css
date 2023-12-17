@@ -1,0 +1,48 @@
+.main-container{
+    display: flex;
+    justify-content: space-between;
+}
+.reg-left{
+    flex: 1;
+    /* margin-right: 20px; */
+}
+.login-photo{
+    width: 100%;
+    height: auto;
+    /* margin-top: 2px; */
+
+}
+.reg-right{
+    flex: 1;
+    
+}
+.button-form-div {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20%;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 400px;
+    margin: 0 auto;
+    align-items: center;
+    /* Center the container */
+}
+
+.custom-button {
+    /* Your button styles */
+    padding: 10px;
+    background-color: #89C2F7;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+.custom-button:hover {
+    background-color: #89C2F7;
+}
