@@ -1,0 +1,18 @@
+.hero-section{
+    display: flex;
+    justify-content: space-between;
+}
+.main-content-left {
+    flex: 1;
+    margin-right: 20px;
+}
+.main-photo {
+    width: 100%;
+    height: auto;
+}
+.main-content-right {
+    flex: 1;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: large;
+    font-weight: bold;
+}

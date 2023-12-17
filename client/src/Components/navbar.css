@@ -1,0 +1,50 @@
+.navbar-container{
+    display: flex;
+    align-items: center;
+}
+.logo {
+    margin-right: 10px;
+}
+
+.logo-img {
+    width: 124px;
+    height: auto;
+    padding-left: 40px;
+}
+.navbar-buttons{
+    display: flex;
+    gap: 15px;
+    margin-right: 20px;
+    margin-left: auto;
+
+}
+
+button {
+    padding: 10px;
+    background-color: #FFF5EE;
+    color: black;
+    /* Change button text color to black */
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    position: relative;
+    font-weight: bold;
+    border-radius: 7px;
+}
+
+button:hover,
+button:focus {
+    text-decoration: underline;
+    color: #FFB6C1;
+}
+
+button:not(:last-child) {
+    margin-right: 120px;
+}
+.user-icon {
+    font-size: 18px;
+    margin-left: 40px;
+    margin-right: 50px;
+    color: #FFB6C1;
+    /* Change icon color */
+}
