@@ -8,7 +8,13 @@ const port = 5000;
 const jwtKey = process.env.JWT_KEY || "default_secret_key";
 // Middleware
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: [],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
 
 // Connect to MongoDB
 mongoose
