@@ -1,20 +1,25 @@
 import React, { useState } from "react";
 import loginphoto from "../assets/login photo.png";
 import "./registration.css";
+import axios from "axios";
 
 const Registration = () => {
   const [showForm, setShowForm] = useState(false);
+  const [selectedSlot, setSelectedSlot] = useState(null);
 
-  const handleButtonClick = () => {
+  const handleButtonClick = (slotId, e) => {
+    e.stopPropagation(); 
+    setSelectedSlot(slotId);
     setShowForm(true);
   };
   const [formData, setFormData] = useState({
     email: "",
     password: "",
-    confirmPassword: "",
+    // confirmPassword: "",
     name: "",
     age: "",
     sex: "",
+    slot: "",
   });
 
   const [errors, setErrors] = useState({});
@@ -27,6 +32,8 @@ const Registration = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // setFormData({ ...formData, slot: selectedSlot });
+    const updatedFormData = { ...formData, slot: selectedSlot };
     const isValid = validateForm();
 
     if (isValid) {
@@ -36,24 +43,30 @@ const Registration = () => {
     }
 
     //send data to register
-    // try{
-    // const response = await axios.post("http://localhost:5000/register", registerData);
-    //  const {sucess, message} = Response.data;
-    // if(success) {
-    // console.log('registerd successfully');
-    // }
-    // }
-    // catch(error){
-    // console.log('error', error);
-    // }
-    // setFormData({
-    //  email: "",
-    // password: "",
-    // confirmPassword: "",
-    // name: "",
-    // age: "",
-    // sex: "",
-    // })
+    try {
+      const response = await axios
+        .post("http://localhost:5000/api/users/signup", updatedFormData)
+        .then((response) => {
+          console.log("Response:", response.data);
+        });
+      const { sucess, message } = response.data;
+      if (sucess) {
+        console.log("registerd successfully");
+      }
+    } catch (error) {
+      console.log("error", error);
+    }
+    setFormData({
+      email: "",
+      password: "",
+      confirmPassword: "",
+      name: "",
+      age: "",
+      sex: "",
+      slot: "",
+    });
+    // setSelectedSlot(null);
+    // setShowForm(false);
   };
 
   const validateForm = () => {
@@ -98,16 +111,28 @@ const Registration = () => {
 
           {!showForm && (
             <div className="button-container">
-              <div onClick={handleButtonClick} className="custom-button">
+              <div
+                onClick={(e) => handleButtonClick(0, e)}
+                className="custom-button"
+              >
                 6 - 7 AM
               </div>
-              <div onClick={handleButtonClick} className="custom-button">
+              <div
+                onClick={(e) => handleButtonClick(1, e)}
+                className="custom-button"
+              >
                 7 - 8 AM
               </div>
-              <div onClick={handleButtonClick} className="custom-button">
+              <div
+                onClick={(e) => handleButtonClick(2, e)}
+                className="custom-button"
+              >
                 8 - 9 AM
               </div>
-              <div onClick={handleButtonClick} className="custom-button">
+              <div
+                onClick={(e) => handleButtonClick(3, e)}
+                className="custom-button"
+              >
                 5 - 6 PM
               </div>
             </div>
@@ -173,7 +198,7 @@ const Registration = () => {
                       <input
                         type="password"
                         name="confirmPassword"
-                        value={formData.confirmPassword}
+                        // value={formData.confirmPassword}
                         onChange={handleChange}
                         style={{
                           width: "70%",
@@ -258,28 +283,28 @@ const Registration = () => {
                       </p>
                     )}
                   </div>
+                  <div className="button-payment">
+                    <button
+                      type="submit"
+                      style={{
+                        width: "80%",
+                        padding: "8px",
+                        borderRadius: "5px",
+                        border: "1px solid #ccc",
+                        marginTop: "10px",
+                        textAlign: "center",
+                        backgroundColor: "#89C2F7",
+                      }}
+                    >
+                      Make Payments
+                    </button>
+                    {paymentMessage && (
+                      <p style={{ color: "green", marginTop: "10px" }}>
+                        {paymentMessage}
+                      </p>
+                    )}
+                  </div>
                 </form>
-                {paymentMessage && (
-                  <p style={{ color: "green", marginTop: "10px" }}>
-                    {paymentMessage}
-                  </p>
-                )}
-              </div>
-              <div className="button-payment">
-                <button
-                  type="submit"
-                  style={{
-                    width: "80%",
-                    padding: "8px",
-                    borderRadius: "5px",
-                    border: "1px solid #ccc",
-                    marginTop: "10px",
-                    textAlign: "center",
-                    backgroundColor: "#89C2F7",
-                  }}
-                >
-                  Make Payments
-                </button>
               </div>
             </div>
           )}

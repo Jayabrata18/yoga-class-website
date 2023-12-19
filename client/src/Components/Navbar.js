@@ -3,10 +3,15 @@ import "./navbar.css";
 import logo from "../assets/logo2.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 
 
 const Navbar = () => {
-  const buttonNames = ["Home", "About", "Classes", "Practicing", "Content"];
+  const navigate = useNavigate();
+
+  const handleSigninClick = () => {
+    navigate("/login");
+  };
   return (
     <div className="navbar-container">
       <div className="logo">
@@ -20,7 +25,7 @@ const Navbar = () => {
         <button className="btn-primary">Content</button>
       </div>
       <div className="navbar-userIcon">
-        <FontAwesomeIcon icon={faUser} className="user-icon" />
+        <FontAwesomeIcon icon={faUser} onClick={handleSigninClick}className="user-icon" />
       </div>
     </div>
   );

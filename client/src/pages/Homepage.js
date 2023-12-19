@@ -11,6 +11,7 @@ const Homepage = () => {
     // Navigate to the Registration page
     navigate("/registration");
   };
+
   return (
     <div>
       <Navbar />
