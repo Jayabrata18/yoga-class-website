@@ -105,7 +105,7 @@ app.post(
     };
     console.log(req.session);
 
-    res.status(200).send(existingUser);
+    // res.status(200).send(existingUser);
   }
 );
 
