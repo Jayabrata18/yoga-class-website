@@ -6,13 +6,14 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [loginMessage, setLoginMessage] = useState("");
   const [userSlot, setUserSlot] = useState("");
+  axios.defaults.withCredentials = true;
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/users/signin",
+        "https://yoga-class-website-ten.vercel.app/api/users/signin",
         { email, password }
       );
 

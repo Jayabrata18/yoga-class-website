@@ -6,6 +6,7 @@ import axios from "axios";
 const Registration = () => {
   const [showForm, setShowForm] = useState(false);
   const [selectedSlot, setSelectedSlot] = useState(null);
+  axios.defaults.withCredentials = true;
 
   const handleButtonClick = (slotId, e) => {
     e.stopPropagation(); 
@@ -45,7 +46,10 @@ const Registration = () => {
     //send data to register
     try {
       const response = await axios
-        .post("http://localhost:5000/api/users/signup", updatedFormData)
+        .post(
+          "https://yoga-class-website-ten.vercel.app/api/users/signup",
+          updatedFormData
+        )
         .then((response) => {
           console.log("Response:", response.data);
         });
