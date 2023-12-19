@@ -10,7 +10,7 @@ const jwtKey = process.env.JWT_KEY || "default_secret_key";
 app.use(express.json());
 app.use(
   cors({
-    origin: [],
+    origin: ["https://yoga-class-website-client.vercel.app/"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
