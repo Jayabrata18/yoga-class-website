@@ -43,6 +43,9 @@ const userSchema = new mongoose.Schema({
 const User = mongoose.model("User", userSchema);
 
 // const router = express.Router();
+app.get("/", (req, res) => {
+  res.json({ message: "Hello World" });
+});
 app.post(
   "/api/users/signup",
   [
