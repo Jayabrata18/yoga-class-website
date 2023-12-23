@@ -11,12 +11,12 @@ To start the project first you should clone the repository.
 
 User Database schema for the project is
 
-email: String,
-password: String,
-confirmPassword: String,
-name: String,
-age: String,
-sex: String,
-updatedAt: Date,
-slot: Number,
+email: String,<br>
+password: String,<br>
+confirmPassword: String,<br>
+name: String,<br>
+age: String,<br>
+sex: String,<br>
+updatedAt: Date,<br>
+slot: Number,<br>
 month: String,
