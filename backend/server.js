@@ -56,7 +56,7 @@ app.post(
       .withMessage("Password must be between 4 and 20 characters"),
   ],
   async (req, res) => {
-    const { email, password, name, age, sex, slot } = req.body;
+    const { email, password, name, age, sex, slot, month } = req.body;
 
     const existingUser = await User.findOne({ email });
 
