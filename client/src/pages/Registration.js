@@ -9,7 +9,7 @@ const Registration = () => {
   axios.defaults.withCredentials = true;
 
   const handleButtonClick = (slotId, e) => {
-    e.stopPropagation(); 
+    e.stopPropagation();
     setSelectedSlot(slotId);
     setShowForm(true);
   };
@@ -21,6 +21,7 @@ const Registration = () => {
     age: "",
     sex: "",
     slot: "",
+    month: "",
   });
 
   const [errors, setErrors] = useState({});
@@ -68,6 +69,7 @@ const Registration = () => {
       age: "",
       sex: "",
       slot: "",
+      month: "",
     });
     // setSelectedSlot(null);
     // setShowForm(false);
@@ -287,6 +289,49 @@ const Registration = () => {
                       </p>
                     )}
                   </div>
+                  <div>
+                    <label>
+                      Month<span style={{ color: "red" }}>*</span>:
+                      <select
+                        name="month"
+                        value={formData.month}
+                        onChange={handleChange}
+                        style={{
+                          width: "80%",
+                          padding: "8px",
+                          borderRadius: "5px",
+                          border: "1px solid #ccc",
+                          marginTop: "10px",
+                        }}
+                      >
+                        <option value="">Select</option>
+                        <option value="January">January</option>
+                        <option value="February">February</option>
+                        <option value="March">March</option>
+                        <option value="April">April</option>
+                        <option value="May">May</option>
+                        <option value="June">June</option>
+                        <option value="July">July</option>
+                        <option value="August">August</option>
+                        <option value="September">September</option>
+                        <option value="October">October</option>
+                        <option value="November">November</option>
+                        <option value="December">December</option>
+                      </select>
+                    </label>
+                    {errors.month && (
+                      <p
+                        style={{
+                          color: "red",
+                          fontSize: "12px",
+                          margin: "5px 0 0 0",
+                        }}
+                      >
+                        {errors.month}
+                      </p>
+                    )}
+                  </div>
+
                   <div className="button-payment">
                     <button
                       type="submit"

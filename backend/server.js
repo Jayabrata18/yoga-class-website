@@ -38,11 +38,11 @@ const userSchema = new mongoose.Schema({
   sex: String,
   updatedAt: Date,
   slot: Number,
+  month: String,
 });
 
 const User = mongoose.model("User", userSchema);
 
-// const router = express.Router();
 app.get("/", (req, res) => {
   res.json({ message: "Hello World" });
 });
@@ -54,9 +54,6 @@ app.post(
       .trim()
       .isLength({ min: 4, max: 20 })
       .withMessage("Password must be between 4 and 20 characters"),
-    // body("name"),
-    // body("age"),
-    // body("sex"),
   ],
   async (req, res) => {
     const { email, password, name, age, sex, slot } = req.body;
@@ -75,6 +72,7 @@ app.post(
       sex,
       updatedAt: new Date(),
       slot,
+      month,
     });
     await newUser.save();
 
@@ -96,8 +94,10 @@ app.post(
     if (!existingUser || existingUser.password !== password) {
       return res.status(401).send("Invalid credentials");
     }
-    const { slot } = existingUser;
-    res.status(200).json({ success: true, message: "Login successful", slot });
+    const { slot, month } = existingUser;
+    res
+      .status(200)
+      .json({ success: true, message: "Login successful", slot, month });
 
     // Generate JWT
     const userJwt = jwt.sign(

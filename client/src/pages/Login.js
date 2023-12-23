@@ -7,6 +7,8 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [loginMessage, setLoginMessage] = useState("");
   const [userSlot, setUserSlot] = useState("");
+  const [userMonth, setUserMonth] = useState("");
+
   axios.defaults.withCredentials = true;
 
   const timeSlotMapper = (slot) => {
@@ -34,13 +36,16 @@ const Login = () => {
         { email, password }
       );
 
-      const { success, slot } = response.data;
+      const { success, slot, month } = response.data;
 
       if (success) {
         setLoginMessage("Login successful!");
         setUserSlot(
-          `You have registered for the ${timeSlotMapper(slot)} slot.\nYou can only change your slot in the next billing month.`
+          `You have registered for the ${timeSlotMapper(
+            slot
+          )} slot.\nYou can only change your slot in the next billing month.`
         );
+        setUserMonth(`You are in the ${month} billing month.`);
       } else {
         setLoginMessage("Invalid email or password.");
       }
@@ -70,10 +75,13 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <button className="login-button"type="submit">Login</button>
+        <button className="login-button" type="submit">
+          Login
+        </button>
       </form>
       {loginMessage && <p>{loginMessage}</p>}
       {userSlot && <p>{userSlot}</p>}
+      {userMonth && <p>{userMonth}</p>}
     </div>
   );
 };
